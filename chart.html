@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        const ying = 25000;
+        const nun = 30000;
+        let amountTotal = nun+ying;
+        let listMaster = [
+          ['งวดรถ',     9000],
+          ['CIMB',     6000],
+          ['ค่าห้อง',     5000],
+          ['เก็บ',     5000],
+          ['เล่นหวย ซื้อเหรียญ',     4000],
+          ['U',     3600],
+          ['F',     3000],
+          ['ค่าประกันรถรายเดือน',2500],
+          ['SCB',     2700],
+          ['ค่าเน็ต + netflex',     1000],
+        ]
+
+        // let total = 0;
+        // listMaster.forEach(m=> total += m[1]); // รวมรายการที่จ่าย
+        // listMaster = [['คงเหลือ ใช้จ่าย',   amountTotal -  total],...listMaster];
+
+
+        // เดือนมิถุนายน
+
+        let listJun = [...listMaster,  ['*ประกัน PA',     2000],]
+        let totalJun = 0;
+        listJun.forEach(m=> totalJun += m[1]); // รวมรายการที่จ่าย
+
+        listJun = [['คงเหลือ ใช้จ่าย',   amountTotal -  totalJun],...listJun];
+
+        var dataJun = google.visualization.arrayToDataTable([['Task', 'Hours per Day'],...listJun]);
+        var optionChartJun = {
+          title: 'รายจ่ายเดือน มิถุนายน',
+          is3D: true,
+        };
+        var chartJun = new google.visualization.PieChart(document.getElementById('chartJun'));
+        chartJun.draw(dataJun, optionChartJun);
+
+
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['scb',     53000],
+          ['cimb',     89000],
+          ['cimb',     47500],
+          ['f',     40000],
+          ['f',     29000],
+          ['uma',     120000],
+        
+        ]);
+
+        var options = {
+          title: 'ยอดรวมหนี้ 378,500',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('scb'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chartJun" style="width: 900px; height: 500px;"></div>
+    <div id="scb" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
